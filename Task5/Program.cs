@@ -23,7 +23,7 @@ namespace Task5
                 for (int j = 0; j < n; j++)
                 {
                     if(i > j)
-                        if ((n - i + 1) > j)
+                        if ((n - i) > j)
                             arr[i,j] = 1;
                 }
 
@@ -32,6 +32,7 @@ namespace Task5
             {
                 for (int j = 0; j < n; j++)
                     Write(" {0}",arr[i,j]);
+                WriteLine();
             }
 
             ReadKey(true);
