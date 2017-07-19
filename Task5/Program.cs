@@ -22,8 +22,8 @@ namespace Task5
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++)
                 {
-                    if(i > j)
-                        if ((n - i) > j)
+                    if(j > i)
+                        if (j > (n - i))
                             arr[i,j] = 1;
                 }
 
