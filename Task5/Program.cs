@@ -10,6 +10,36 @@ namespace Task5
 {
     class Program
     {
+
+        static void fill(int[,] arr)
+        {
+            var r = new Random();
+
+            int n0 = arr.GetLength(0);
+            int n1 = arr.GetLength(1);
+
+            for (int i = 0; i < n0; i++)
+                for (int j = 0; j < n1; j++)
+                    arr[i, j] = r.Next(100);
+        }
+
+        static string toString(int[,] arr)
+        {
+            string result = string.Empty;
+            int n0 = arr.GetLength(0);
+            int n1 = arr.GetLength(1);
+            
+            for (int i = 0; i < n0; i++)
+            {
+                for (int j = 0; j < n1; j++)
+                    result += " " + arr[i, j];
+
+                result += "\n";
+            }
+            return result;
+        }
+
+
         static void Main(string[] args)
         {
             WriteLine("Введите длину массива");
@@ -18,30 +48,19 @@ namespace Task5
             while (!int.TryParse(ReadLine(), out n) || n <= 0)
                 WriteLine("Введите положительное целое число");
 
-            var r = new Random();
             var arr = new int[n, n];
+            fill(arr);
 
+            WriteLine(toString(arr));
+
+            int max;
             for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    arr[i, j] = r.Next(100);
-
-
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
+                for (int j = i; j < n; j++)
                     if (j >= i)
                         if (j >= (n - i - 1))
                         {
-                            
                         }
-        
-
-        for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                    Write(" {0}",arr[i,j]);
-                WriteLine();
-            }
-
+            
             ReadKey(true);
         }
     }
