@@ -10,20 +10,20 @@ namespace Task5
 {
     class Program
     {
+        static readonly Random R = new Random();
 
         static void fill(int[,] arr)
         {
-            var r = new Random();
 
             int n0 = arr.GetLength(0);
             int n1 = arr.GetLength(1);
 
             for (int i = 0; i < n0; i++)
                 for (int j = 0; j < n1; j++)
-                    arr[i, j] = r.Next(100);
+                    arr[i, j] = R.Next(100);
         }
 
-        static string toString(int[,] arr)
+        static string toString(int[,] arr, string format = " {0:00}")
         {
             string result = string.Empty;
             int n0 = arr.GetLength(0);
@@ -32,7 +32,7 @@ namespace Task5
             for (int i = 0; i < n0; i++)
             {
                 for (int j = 0; j < n1; j++)
-                    result += $" {arr[i, j]:00}";
+                    result += string.Format(format,arr[i,j]);
 
                 result += "\n";
             }
@@ -42,7 +42,7 @@ namespace Task5
 
         static void Main(string[] args)
         {
-            WriteLine("Введите длину массива");
+            WriteLine("Введите размер матрицы");
 
             int n = 0;
             while (!int.TryParse(ReadLine(), out n) || n <= 0)
@@ -51,15 +51,23 @@ namespace Task5
             var arr = new int[n, n];
             fill(arr);
             WriteLine(toString(arr));
-            
-            int max;
+
+            var template = new int[n, n];
+
+            int max = int.MinValue;
             for (int i = 0; i < n; i++)
                 for (int j = Math.Max(i, n - i - 1); j < n; j++)
                 {
-                    arr[i, j] = 0;
+                    template[i, j] = arr[i, j];
+                    if (arr[i, j] > max)
+                        max = arr[i, j];
                 }
+            WriteLine("Требуемый регион:\n{0}",toString(template));
 
-            WriteLine(toString(arr));
+
+            WriteLine("Максимальный элемент требуемого региона: {0}",max);
+
+            //WriteLine(toString(arr));
 
             ReadKey(true);
         }
