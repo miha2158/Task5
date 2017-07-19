@@ -32,7 +32,7 @@ namespace Task5
             for (int i = 0; i < n0; i++)
             {
                 for (int j = 0; j < n1; j++)
-                    result += " " + arr[i, j];
+                    result += $" {arr[i, j]:00}";
 
                 result += "\n";
             }
@@ -50,17 +50,17 @@ namespace Task5
 
             var arr = new int[n, n];
             fill(arr);
+            WriteLine(toString(arr));
+            
+            int max;
+            for (int i = 0; i < n; i++)
+                for (int j = Math.Max(i, n - i - 1); j < n; j++)
+                {
+                    arr[i, j] = 0;
+                }
 
             WriteLine(toString(arr));
 
-            int max;
-            for (int i = 0; i < n; i++)
-                for (int j = i; j < n; j++)
-                    if (j >= i)
-                        if (j >= (n - i - 1))
-                        {
-                        }
-            
             ReadKey(true);
         }
     }
