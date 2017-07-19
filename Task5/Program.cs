@@ -18,17 +18,24 @@ namespace Task5
             while (!int.TryParse(ReadLine(), out n) || n <= 0)
                 WriteLine("Введите положительное целое число");
 
+            var r = new Random();
             var arr = new int[n, n];
+
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++)
-                {
-                    if(j > i)
-                        if (j > (n - i))
-                            arr[i,j] = 1;
-                }
+                    arr[i, j] = r.Next(100);
 
 
             for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    if (j >= i)
+                        if (j >= (n - i - 1))
+                        {
+                            
+                        }
+        
+
+        for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
                     Write(" {0}",arr[i,j]);
